@@ -1,7 +1,3 @@
-A anotação @Autowired pode ser utilizada em construtores, metodos e variáveis.
+Dependência opcional com @Autowired:
 
-Normalmente são usadas em construtores ou em variáveis.
-
-A vantagem de se utilizar em construtores é a clara comunicação dos parâmetros necessários para instânciar uma classe
-
-A vantagem da utilização em variáveis é a versatilidade, acaba sendo mais usado do que os construtores
+@Autowired(required = false)
