@@ -1,3 +1,0 @@
-Dependência opcional com @Autowired:
-
-@Autowired(required = false)
