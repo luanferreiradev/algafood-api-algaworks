@@ -1,14 +1,16 @@
-Quando queremos configurar diferentes ambientes, podemos fazer isso por meio do spring profiles
-Usamos a anotação @Profile("nomeDoProfile")
+Podemos criar métodos para serem executados após a criação e antes da destruição de beans
 
-Para passar o profile por linha de comando:
-java -jar projeto.jar -Dspring.profiles.active=nomeDoProfile
+Podemos fazer isso por meio de anotação nos métodos dos componentes, sendo elas:
 
-Para definir o profile pelo IntelliJ:
-Add the VM configuration:
--Dspring.profiles.active=nomeDoProfile
+@PostConstruct
+@PreDestroy
 
-Para definir o profile no arquivo application.properties:
-spring.profiles.active=nomeDoProfile
+Podemos fazer por meio de classes de configuração, onde passamos parâmetros para as anotações de beans com os
+nomes dos métodos a serem executados:
 
-OBS: mais de um profile pode ser passado, basta separar o nome dos profiles por vírgula
+@Bean(initMethod = "init", destroyMethod = "destroy")
+
+Também podemos fazer por meio da implementação de interfaces, normalmente não é utilizado:
+
+InitializingBean
+DisposableBean
