@@ -1,1 +1,14 @@
-Podemos também criar anotações customizadas, o que facilita a refatoração e utilização do código
+Quando queremos configurar diferentes ambientes, podemos fazer isso por meio do spring profiles
+Usamos a anotação @Profile("nomeDoProfile")
+
+Para passar o profile por linha de comando:
+java -jar projeto.jar -Dspring.profiles.active=nomeDoProfile
+
+Para definir o profile pelo IntelliJ:
+Add the VM configuration:
+-Dspring.profiles.active=nomeDoProfile
+
+Para definir o profile no arquivo application.properties:
+spring.profiles.active=nomeDoProfile
+
+OBS: mais de um profile pode ser passado, basta separar o nome dos profiles por vírgula
