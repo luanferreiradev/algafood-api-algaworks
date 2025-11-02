@@ -1,1 +1,5 @@
-Caso haja uma ambiguidade de beans, podemos usar a anotação @Primary, caso queiramos apenas um bean sendo gerenciado pelo spring
+Outra forma de realizar a desambiguação de beans é utilizando a anotação @Qualifier
+
+@Qualifier("nomeDoQualifier")
+
+A anotação é usada nos beans e nos pontos de injeção. Basta ter nomes iguais
