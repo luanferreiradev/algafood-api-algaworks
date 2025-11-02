@@ -1,5 +1,1 @@
-Outra forma de realizar a desambiguação de beans é utilizando a anotação @Qualifier
-
-@Qualifier("nomeDoQualifier")
-
-A anotação é usada nos beans e nos pontos de injeção. Basta ter nomes iguais
+Podemos também criar anotações customizadas, o que facilita a refatoração e utilização do código
