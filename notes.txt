@@ -1,3 +1,20 @@
-Para criar propriedades customizadas, basta cria-las no arquivo application.properties.
+Podemos facilitar o acesso a propriedades customizadas. Para isso criamos uma classe de propriedades.
 
-Para atribuir esses valores à variáveis, basta usar a anotação @Value("${nomeDaPropriedade}")
+Primeiramente, definimos uma nova dependência que vai nos ajudar a ter autocomplete das nossas propriedades customizadas
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-configuration-processor</artifactId>
+    <optional>true</optional>
+</dependency>
+
+Após isso, criamos a classe que vai conter nossas propriedades, a classe leva as anotações:
+
+@Component
+@ConfigurationProperties("prefixo.das.configurações")
+
+Em seguida cria-se variáveis com o mesmo nome do arquivo application.properties, porém, em padrão cammelCase
+
+Agora passamos a acessar as propriedades por meio de uma instância da classe de propriedades alimentada pelo @Autowired
+
+Podemos também, gerar javadocs para as propriedades, que serão exibidos no arquivo application.properties
