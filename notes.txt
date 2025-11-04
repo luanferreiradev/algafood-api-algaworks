@@ -1,0 +1,7 @@
+Podemos também definir propriedades da aplicação via parâmetros na CLI
+
+Exemplo:
+java -jar .\target\algafood-api-0.0.1-SNAPSHOT.jar --server.port=8082
+
+Ou também, definindo uma variável de ambiente
+As variáveis de ambiente devem seguir o mesmo padrão de escrita de contantes no java
