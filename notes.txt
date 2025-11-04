@@ -1,13 +1,6 @@
-Podemos criar arquivos de propriedades para diferentes profiles, basta criar um arquivo com o nome do profile, exemplo:
+Para ativar um profile por linha de comando por CLI:
+java -jar caminhoDoJar --spring.profiles.active=nomeDoProfile
 
-application-development.properties
-
-Estes arquivos terão apenas as propriedades específicas de cada profile, o que não houver nelas será obtido do
-arquivo padrão.
-
-Para definir o profile pelo IntelliJ:
-Add the VM configuration:
--Dspring.profiles.active=nomeDoProfile
-
-Para definir o profile no arquivo application.properties:
-spring.profiles.active=nomeDoProfile
+Para utilizar uma variável de ambiente, primeiro definimos a variável no sistema com o nome "SPRING_PROFILES_ACTIVE"
+e rodamos a aplicação sem passar parâmetros:
+java -jar caminhoDoJar
