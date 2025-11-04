@@ -1,20 +1,13 @@
-Podemos facilitar o acesso a propriedades customizadas. Para isso criamos uma classe de propriedades.
+Podemos criar arquivos de propriedades para diferentes profiles, basta criar um arquivo com o nome do profile, exemplo:
 
-Primeiramente, definimos uma nova dependência que vai nos ajudar a ter autocomplete das nossas propriedades customizadas
+application-development.properties
 
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-configuration-processor</artifactId>
-    <optional>true</optional>
-</dependency>
+Estes arquivos terão apenas as propriedades específicas de cada profile, o que não houver nelas será obtido do
+arquivo padrão.
 
-Após isso, criamos a classe que vai conter nossas propriedades, a classe leva as anotações:
+Para definir o profile pelo IntelliJ:
+Add the VM configuration:
+-Dspring.profiles.active=nomeDoProfile
 
-@Component
-@ConfigurationProperties("prefixo.das.configurações")
-
-Em seguida cria-se variáveis com o mesmo nome do arquivo application.properties, porém, em padrão cammelCase
-
-Agora passamos a acessar as propriedades por meio de uma instância da classe de propriedades alimentada pelo @Autowired
-
-Podemos também, gerar javadocs para as propriedades, que serão exibidos no arquivo application.properties
+Para definir o profile no arquivo application.properties:
+spring.profiles.active=nomeDoProfile
