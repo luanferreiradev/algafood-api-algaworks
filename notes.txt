@@ -1,6 +1,1 @@
-Para ativar um profile por linha de comando por CLI:
-java -jar caminhoDoJar --spring.profiles.active=nomeDoProfile
-
-Para utilizar uma variável de ambiente, primeiro definimos a variável no sistema com o nome "SPRING_PROFILES_ACTIVE"
-e rodamos a aplicação sem passar parâmetros:
-java -jar caminhoDoJar
+Este commit marca o começo do módulo de introdução ao JPA e Hibernate
