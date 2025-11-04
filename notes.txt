@@ -1,16 +1,8 @@
-Podemos criar métodos para serem executados após a criação e antes da destruição de beans
+Uma forma de facilitar a separação de responsabilidades é utilizar de eventos.
 
-Podemos fazer isso por meio de anotação nos métodos dos componentes, sendo elas:
+Para isso utilizamos a classe ApplicationEventPublisher para publicar um evento.
 
-@PostConstruct
-@PreDestroy
+Criamos uma classe que representa um evento e esta classe é utilizada na hora de publicar um evento.
 
-Podemos fazer por meio de classes de configuração, onde passamos parâmetros para as anotações de beans com os
-nomes dos métodos a serem executados:
-
-@Bean(initMethod = "init", destroyMethod = "destroy")
-
-Também podemos fazer por meio da implementação de interfaces, normalmente não é utilizado:
-
-InitializingBean
-DisposableBean
+Após isso, criamos um método que irá receber nossa classe que representa o evento e possui uma anotação @EventListener,
+que indica que é um método que irá receber eventos publicados
