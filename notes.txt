@@ -1,8 +1,0 @@
-Uma forma de facilitar a separação de responsabilidades é utilizar de eventos.
-
-Para isso utilizamos a classe ApplicationEventPublisher para publicar um evento.
-
-Criamos uma classe que representa um evento e esta classe é utilizada na hora de publicar um evento.
-
-Após isso, criamos um método que irá receber nossa classe que representa o evento e possui uma anotação @EventListener,
-que indica que é um método que irá receber eventos publicados
