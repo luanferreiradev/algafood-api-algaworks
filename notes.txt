@@ -1,1 +1,19 @@
-Este commit marca o começo do módulo de introdução ao JPA e Hibernate
+Para facilitarmos a interação com o banco de dados, utilizamos JPA, nesse caso vamos utilizar a implementação do Hibernate
+
+Adicionamos a dependência do "Spring Boot Starter Data JPA"
+
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+
+Porém, apenas esta dependência não é o suficiente para tudo funcionar, pois temos apenas a dependência do JPA,
+mas não temos uma implementação do driver JDBC. Então devemos adiciona-la
+
+    <dependency>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+    </dependency>
+
+Devemos também, no arquivo application.properties, adicionar as propriedades de conexão com o banco
+Vale notar que podemos adicionar parâmetros ao final da URL de conexão, como pode ser visto na que foi adicionada
