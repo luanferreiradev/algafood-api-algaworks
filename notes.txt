@@ -1,1 +1,5 @@
-Apenas criamos as classes Cozinha e Restaurante e realizamos o mapeamento com JPA
+Adicionamos duas propriedades ao application.properties
+
+spring.jpa.generate-ddl=true (Faz com que o JPA gere as tabelas automaticamente)
+
+spring.jpa.hibernate.ddl-auto=create (Faz com que o JPA descarte as tabelas existentes e crie novas tabelas)
