@@ -1,5 +1,6 @@
-Adicionamos duas propriedades ao application.properties
+Nossa tabela possui o campo id, porém esse campo não está sendo autoincrementado, portanto, devemos ajustar isso
+Usamos a anotação a seguir em todas as variáveis que representam ids:
 
-spring.jpa.generate-ddl=true (Faz com que o JPA gere as tabelas automaticamente)
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 
-spring.jpa.hibernate.ddl-auto=create (Faz com que o JPA descarte as tabelas existentes e crie novas tabelas)
+A strategy passada para a anotação indica que o banco de dados será o responsável pela criação dos ids
