@@ -1,1 +1,17 @@
-Para importar dados para nossa tabela, podemos criar um arquivo import.sql dentro da pasta de resources e popula-lo
+Primeiramente, criamos uma classe de repositório, neste caso, chamamos de CadastroCozinha, e criamos o método listar
+
+OBS: na variável EntityManager, anotamos com a anotação @PersistenceContext, pois ela é mais adequada para a situação
+do que a @Autowired
+
+Também criamos uma classe com um método main, para não necessitarmos realizar requisições web para poder
+testar nosso repositório, neste casso a classe ConsultaCozinhaMain
+
+Criamos uma instância de ApplicationContext baseada na classe AlgafoodApiApplication (poderiamos ter usado a anotação
+@SpringBootApplication ao invés de nos basearmos na AlgafoodApiApplication) e definimos que não será uma apicação web
+
+O motivo para criamos esse ApplicationContext é para que possamos utilizar do Spring para nossos testes, como a conexão
+com o banco de dados, para obter o bean da classe CadastroCozinha...
+
+Podemos também mostrar o código sql usado pelo jpa, basta usar a seguinte propriedade no application.properties:
+
+spring.jpa.show-sql=true
