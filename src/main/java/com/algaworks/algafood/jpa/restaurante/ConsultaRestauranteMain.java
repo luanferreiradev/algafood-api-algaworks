@@ -9,7 +9,7 @@ import org.springframework.context.ApplicationContext;
 
 import java.util.List;
 
-public class ConsultaCozinhaMain {
+public class ConsultaRestauranteMain {
     public static void main(String[] args) {
         ApplicationContext applicationContext = new SpringApplicationBuilder(AlgafoodApiApplication.class)
                 .web(WebApplicationType.NONE)
@@ -20,7 +20,11 @@ public class ConsultaCozinhaMain {
         List<Restaurante> restauranteList = restaurantes.listar();
 
         for (Restaurante restaurante : restauranteList) {
-            System.out.printf("%d - %s - %.2f%n", restaurante.getId(), restaurante.getNome(), restaurante.getTaxaFrete());
+            System.out.printf("%d - %s - %.2f - %s%n",
+                    restaurante.getId(),
+                    restaurante.getNome(),
+                    restaurante.getTaxaFrete(),
+                    restaurante.getCozinha().getNome());
         }
     }
 }

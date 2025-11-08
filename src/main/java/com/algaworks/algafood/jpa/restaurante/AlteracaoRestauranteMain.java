@@ -9,7 +9,7 @@ import org.springframework.context.ApplicationContext;
 
 import java.math.BigDecimal;
 
-public class InclusaoCozinhaMain {
+public class AlteracaoRestauranteMain {
 
     public static void main(String[] args) {
         ApplicationContext applicationContext = new SpringApplicationBuilder(AlgafoodApiApplication.class)
@@ -18,16 +18,11 @@ public class InclusaoCozinhaMain {
 
         RestauranteRepository restaurantes = applicationContext.getBean(RestauranteRepository.class);
 
-        Restaurante restaurante1 = new Restaurante();
-        restaurante1.setNome("Komi Keto");
-        restaurante1.setTaxaFrete(new BigDecimal("20.00"));
-
-        Restaurante restaurante2 = new Restaurante();
-        restaurante2.setNome("La Gran Parrilla");
-        restaurante2.setTaxaFrete(new BigDecimal("18.00"));
-
-        restaurantes.salvar(restaurante1);
-        restaurantes.salvar(restaurante2);
-
+        Restaurante restaurante = new Restaurante();
+        restaurante.setId(2L);
+        restaurante.setNome("Komi Keto");
+        restaurante.setTaxaFrete(new BigDecimal("20.00"));
+        restaurantes.salvar(restaurante);
     }
+
 }
