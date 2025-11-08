@@ -1,9 +1,12 @@
-Agora criamos um método para remoção de uma cozinha.
+Neste momento, passamos a implementar o padrão repository
 
-Para remover uma entidade do banco, primeiro devemos fazer com que ela seja gerenciada pelo jpa.
+Lembrando que o padrão repository sugere a criação de um repository por Aggregate.
 
-Se passarmos uma instância de cozinha, que não seja gerenciada pelo JPA, mesmo que ela contenha os mesmos valores
-que estão presentes no banco, não será possível remover.
+Aggregate é um conjunto de objetos de domínio que podem ser tratados como uma única unidade. Por exemplo:
+Só faz sentido haver uma itens de um pedido se houver um pedido. Portanto, o pedido seria o Aggregate Root
 
-Primeiro relizamos uma busca no banco com base na instância que temos, e a partir da instância retornada pelo
-método de busca podemos realizar a remoção.
+Criamos uma interface para nosso repositorio dentro do pacote domain.model.repository, pois a interface
+não terá nenhum conhecimento de infraestrutura, apenas do dominio do negócio
+
+Criamos uma classe de repositório dentro do pacote infrastructure.repository, pois esta classe terá conhecimento
+de infraestrutura
