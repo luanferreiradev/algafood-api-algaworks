@@ -1,1 +1,3 @@
-Criamos um método pra buscar cozinhas e uma classe para testar esse método
+Criamos uma classe para testar a alteração de uma cozinha. Ao passarmos uma cozinha com um id já existente, o JPA
+realiza a alteração da cozinha no banco de dados. Alteramos o nome do método de "adicionar" para "salva", já que
+reflete melhor o comportamento do método
