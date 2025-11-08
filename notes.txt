@@ -1,3 +1,9 @@
-Criamos uma classe para testar a alteração de uma cozinha. Ao passarmos uma cozinha com um id já existente, o JPA
-realiza a alteração da cozinha no banco de dados. Alteramos o nome do método de "adicionar" para "salva", já que
-reflete melhor o comportamento do método
+Agora criamos um método para remoção de uma cozinha.
+
+Para remover uma entidade do banco, primeiro devemos fazer com que ela seja gerenciada pelo jpa.
+
+Se passarmos uma instância de cozinha, que não seja gerenciada pelo JPA, mesmo que ela contenha os mesmos valores
+que estão presentes no banco, não será possível remover.
+
+Primeiro relizamos uma busca no banco com base na instância que temos, e a partir da instância retornada pelo
+método de busca podemos realizar a remoção.
