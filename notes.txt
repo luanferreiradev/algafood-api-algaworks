@@ -1,7 +1,8 @@
-Caso queiramos definir se um campo na tabela não aceita null, podemos definir isso na anotação @Column, ou @JoinColumn
-passando o valor nullable = false. Exemplo:
+Desafio:
 
-@Column(nullable = false)
+    Criar a entidade, fazer o mapeamento, criar o repositório e importar alguns dados no import.sql de:
 
-Isso só possui utilidade de estivermos gerando nosso ddl para criação da tabela via JPA, se estivermos criando nossa
-tabela de forma manual, não há necessidade desta anotação
+        FormaPagamento
+        Permissao
+        Cidade
+        Estado
