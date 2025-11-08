@@ -1,13 +1,3 @@
-Caso a engine do banco de dados não seja a InnoDB, podemos mudar o dialeto do banco por meio da propriedade abaixo
-Isso é importantante, pois a engine InnoDB permite a utilização de chave estrangeira.
+Caso queiramos alterar o nome da coluna de uma foreign key na nossa tabela, podemos fazer isso por meio da anotação
 
-    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
-
-No nosso caso não precisamos explicitar a propriedade devido a versão do Spring e do MySQL, mas ainda assim, adicionei
-
-Quando queremos fazer um mapeamento muitos pra um, por exemplo:
-
-Um restaurante tem uma cozinha, mas uma cozinha pode ser de muitos restaurantes.
-
-Usamos a anotação @ManyToOne no campo Cozinha da nossa classe Restaurante. Desta forma haverá uma tabela que representa
-as cozinhas e as tabelas de restaurante referenciam as cozinhas por meio de um chave estrangeira.
+@JoinColumn(name = "nome_da_coluna")
