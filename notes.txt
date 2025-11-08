@@ -1,3 +1,7 @@
-Caso queiramos alterar o nome da coluna de uma foreign key na nossa tabela, podemos fazer isso por meio da anotação
+Caso queiramos definir se um campo na tabela não aceita null, podemos definir isso na anotação @Column, ou @JoinColumn
+passando o valor nullable = false. Exemplo:
 
-@JoinColumn(name = "nome_da_coluna")
+@Column(nullable = false)
+
+Isso só possui utilidade de estivermos gerando nosso ddl para criação da tabela via JPA, se estivermos criando nossa
+tabela de forma manual, não há necessidade desta anotação
