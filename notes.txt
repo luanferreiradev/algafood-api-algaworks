@@ -1,12 +1,9 @@
-Neste momento, passamos a implementar o padrão repository
+Para adicionar o Lombok, primeiro devemos adicionar a dependência no pom.xml
 
-Lembrando que o padrão repository sugere a criação de um repository por Aggregate.
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+</dependency>
 
-Aggregate é um conjunto de objetos de domínio que podem ser tratados como uma única unidade. Por exemplo:
-Só faz sentido haver uma itens de um pedido se houver um pedido. Portanto, o pedido seria o Aggregate Root
+Depois, devemos adicionar o plugin do Lombok na IDE
 
-Criamos uma interface para nosso repositorio dentro do pacote domain.model.repository, pois a interface
-não terá nenhum conhecimento de infraestrutura, apenas do dominio do negócio
-
-Criamos uma classe de repositório dentro do pacote infrastructure.repository, pois esta classe terá conhecimento
-de infraestrutura
