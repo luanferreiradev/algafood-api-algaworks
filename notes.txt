@@ -1,9 +1,1 @@
-Para adicionar o Lombok, primeiro devemos adicionar a dependência no pom.xml
-
-<dependency>
-    <groupId>org.projectlombok</groupId>
-    <artifactId>lombok</artifactId>
-</dependency>
-
-Depois, devemos adicionar o plugin do Lombok na IDE
-
+O desafio consinte em utilizar Lombok na classe Restaurante, criar o seu repository e as classes de teste

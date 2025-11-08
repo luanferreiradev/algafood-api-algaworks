@@ -1,4 +1,4 @@
-package com.algaworks.algafood.jpa;
+package com.algaworks.algafood.jpa.cozinha;
 
 import com.algaworks.algafood.AlgafoodApiApplication;
 import com.algaworks.algafood.domain.model.Cozinha;
@@ -16,7 +16,7 @@ public class BuscaCozinhaMain {
 
         CozinhaRepository cozinhas = applicationContext.getBean(CozinhaRepository.class);
 
-        Cozinha cozinha = cozinhas.porId(2L);
+        Cozinha cozinha = cozinhas.buscar(2L);
 
         System.out.println(cozinha.getNome());
 

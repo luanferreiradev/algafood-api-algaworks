@@ -1,4 +1,4 @@
-package com.algaworks.algafood.jpa;
+package com.algaworks.algafood.jpa.cozinha;
 
 import com.algaworks.algafood.AlgafoodApiApplication;
 import com.algaworks.algafood.domain.model.Cozinha;
@@ -22,8 +22,8 @@ public class InclusaoCozinhaMain {
         Cozinha cozinha2 = new Cozinha();
         cozinha2.setNome("Japonesa");
 
-        cozinha1 = cozinhas.adicionar(cozinha1);
-        cozinha2 = cozinhas.adicionar(cozinha2);
+        cozinha1 = cozinhas.salvar(cozinha1);
+        cozinha2 = cozinhas.salvar(cozinha2);
 
         System.out.printf("%d - %s%n", cozinha1.getId(), cozinha1.getNome());
         System.out.printf("%d - %s%n", cozinha2.getId(), cozinha2.getNome());
