@@ -1,5 +1,1 @@
-Criamos o método adicionar, lembrando que o método, por se tratar de uma alteração do estado do banco,
-deve ter a anotação @Transactional presente. Vale resaltar também, que o método retorna uma instância de Cozinha
-com o id, pois o JPA instância um novo objeto o preenche o campo
-
-Também criamos uma classe de teste para as inclusões
+Criamos um método pra buscar cozinhas e uma classe para testar esse método
