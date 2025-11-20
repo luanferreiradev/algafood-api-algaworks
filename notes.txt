@@ -1,0 +1,4 @@
+Criamos uma classe de controller para cozinha
+
+A anotação @RestController possui uma semântica melhor, além de substituir duas anotações por uma. Ela substitui
+@Controller e @ResponseBody
