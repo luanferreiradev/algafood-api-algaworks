@@ -1,1 +1,8 @@
-Um desafio simples de criar um controller para a Estados, apenas para o método listar.
+Adicionamos a dependência para poder obter resultados de requisições em formato xml
+
+<dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-xml</artifactId>
+</dependency>
+
+Podemos definir as propriedades produces para as anotações de mapping e definir quais formatos de resposta são permitidos
