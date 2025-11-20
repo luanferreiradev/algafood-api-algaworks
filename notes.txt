@@ -1,8 +1,0 @@
-Desafio:
-
-    Criar a entidade, fazer o mapeamento, criar o repositório e importar alguns dados no import.sql de:
-
-        FormaPagamento
-        Permissao
-        Cidade
-        Estado
