@@ -1,5 +1,7 @@
-Para a customização das respostas da nossa API, temos as seguintes anotações:
+Para customizar a resposta XML criamos uma classe de Wrapper que irá representar nossa resposta
 
-@JsonIgnore - Ignora o parâmetro na reposta da chamada da API
-@JsonProperty("nomeDaPropriedade") - Muda o nome do parâmetro para a serialização da resposta da API
-@JsonRootName("nomeDoRecurso") - Muda o nome do recurso na serialização da resposta da API
+Ao invés e retornarmos uma lista de cozinhas como resposta da requisição da API, retornamos nossa classe de Wrapper.
+Essa classe terá as anotações que podem ser tanto do JacksonXml ou Json, ambas funcionam.
+
+Uma anotação que vale resaltar é a @JacksonXmlElementWrapper(useWrapping = false), que fará com que não haja um wrap
+da lista de cozinhas
