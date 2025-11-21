@@ -1,8 +1,14 @@
-Adicionamos a dependência para poder obter resultados de requisições em formato xml
+Agora vamos criar a busca de sum singleton resource no nosso controller.
 
-<dependency>
-    <groupId>com.fasterxml.jackson.dataformat</groupId>
-    <artifactId>jackson-dataformat-xml</artifactId>
-</dependency>
+Primeiramente criamos um método que recebe a anotação @GetMapping. Esta anotação deverá receber um caminho de endpoint
 
-Podemos definir as propriedades produces para as anotações de mapping e definir quais formatos de resposta são permitidos
+Exemplo:
+@GetMapping("/{cozinhaId}")
+
+Poderia receber qualquer nome, porém esse nome deve ser utilizado na anotação @PathVariable que a variável do nosso
+método irá receber
+
+Exemplo:
+public Cozinha buscar(@PathVariable("cozinhaId") Long id) {}
+
+Assim será feito um binding entre a variável do caminho para a variável do método
