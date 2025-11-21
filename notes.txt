@@ -1,14 +1,5 @@
-Agora vamos criar a busca de sum singleton resource no nosso controller.
+Para a customização das respostas da nossa API, temos as seguintes anotações:
 
-Primeiramente criamos um método que recebe a anotação @GetMapping. Esta anotação deverá receber um caminho de endpoint
-
-Exemplo:
-@GetMapping("/{cozinhaId}")
-
-Poderia receber qualquer nome, porém esse nome deve ser utilizado na anotação @PathVariable que a variável do nosso
-método irá receber
-
-Exemplo:
-public Cozinha buscar(@PathVariable("cozinhaId") Long id) {}
-
-Assim será feito um binding entre a variável do caminho para a variável do método
+@JsonIgnore - Ignora o parâmetro na reposta da chamada da API
+@JsonProperty("nomeDaPropriedade") - Muda o nome do parâmetro para a serialização da resposta da API
+@JsonRootName("nomeDoRecurso") - Muda o nome do recurso na serialização da resposta da API
