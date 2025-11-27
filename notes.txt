@@ -1,7 +1,2 @@
-Para customizar a resposta XML criamos uma classe de Wrapper que irá representar nossa resposta
-
-Ao invés e retornarmos uma lista de cozinhas como resposta da requisição da API, retornamos nossa classe de Wrapper.
-Essa classe terá as anotações que podem ser tanto do JacksonXml ou Json, ambas funcionam.
-
-Uma anotação que vale resaltar é a @JacksonXmlElementWrapper(useWrapping = false), que fará com que não haja um wrap
-da lista de cozinhas
+Para alterar o código de status da resposta, utilizamos a anotação @ResponseStatus, recebendo um HttpStatus.
+Neste caso alteramos apenas para fins de testes, pois seria incorreto um status 201 para um consulta
