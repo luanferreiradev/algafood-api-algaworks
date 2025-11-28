@@ -1,2 +1,4 @@
-Para alterar o código de status da resposta, utilizamos a anotação @ResponseStatus, recebendo um HttpStatus.
-Neste caso alteramos apenas para fins de testes, pois seria incorreto um status 201 para um consulta
+Para manipular a resposta da requisição podemos retornar um ResponseEntity ao invés de retornar
+a classe de entidade diretamente.
+
+Podemos alterar parâmetros como status, corpo da resposta, headers...
