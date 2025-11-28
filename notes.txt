@@ -1,5 +1,5 @@
-Nesta aula corrigimos o código de status retornado quando um resource é inexistente.
+Nesta aula criamos o método adicionar, para nosso CozinhaController, que utilizará o método Http POST
 
-Basta verificarmos se o resource é nulo e retornar uma resposta com base nisso
-
-Vide a classe CozinhaController
+Para isso criamos o método e o anotamos com @PostMapping
+Além disso, anotamos o parâmetro do método com a anotação @RequestBody, para receber o corpo da requisição.
+Alteramos também o ResponseStatus com a anotação @ResponseStatus para poder enviar o status 201
