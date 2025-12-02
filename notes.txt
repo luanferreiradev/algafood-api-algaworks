@@ -1,8 +1,9 @@
-Nesta aula criamos o método atualizar, para nosso CozinhaController, para atender as requisições com o método Https PUT
+Nesta aula criamos o método remover, para nosso CozinhaController, para atender as requisições com o método Https DELETE
 
-Utilizamos a anotação @PutMapping recebendo o PathVariable e fazemos o binding das variáveis do método.
+Utilizamos a anotação @DeleteMapping recebendo o PathVariable e fazemos o binding das variáveis do método.
 
-Vale resaltar que para alterar um recurso no nosso banco de dados, primeiro devemos busca-lo, para que assim ele
-passe a ser gerenciado pelo hibernate e após isso alteramos os valores que quisermos desta instância.
+Vale resaltar que para remover um recurso do nosso banco de dados, primeiro devemos busca-lo, para que assim ele
+passe a ser gerenciado pelo hibernate e após isso podemos tentar remove-lo. Pode ser que não seja possível remover
+devido a haver alguma chave estrangeira ligada ao recurso.
 
 Vale também lembrar de tratar o caso de não haver o recurso no nosso banco.
