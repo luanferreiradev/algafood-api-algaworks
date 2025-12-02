@@ -1,5 +1,8 @@
-Nesta aula criamos o método adicionar, para nosso CozinhaController, que utilizará o método Http POST
+Nesta aula criamos o método atualizar, para nosso CozinhaController, para atender as requisições com o método Https PUT
 
-Para isso criamos o método e o anotamos com @PostMapping
-Além disso, anotamos o parâmetro do método com a anotação @RequestBody, para receber o corpo da requisição.
-Alteramos também o ResponseStatus com a anotação @ResponseStatus para poder enviar o status 201
+Utilizamos a anotação @PutMapping recebendo o PathVariable e fazemos o binding das variáveis do método.
+
+Vale resaltar que para alterar um recurso no nosso banco de dados, primeiro devemos busca-lo, para que assim ele
+passe a ser gerenciado pelo hibernate e após isso alteramos os valores que quisermos desta instância.
+
+Vale também lembrar de tratar o caso de não haver o recurso no nosso banco.
