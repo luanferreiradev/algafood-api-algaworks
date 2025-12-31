@@ -1,9 +1,10 @@
-Nesta aula criamos o método remover, para nosso CozinhaController, para atender as requisições com o método Https DELETE
+Não é recomendado que a camada de controller realize diretamente operações que alterem o estado da aplicação, para isso
+o DDD (Domain Driven Design) indica o conceito de Domain Service, que é uma operação sem estado que realiza uma tarefa
+específica do domínio.
 
-Utilizamos a anotação @DeleteMapping recebendo o PathVariable e fazemos o binding das variáveis do método.
+Para isso criamos dentro do pacote domain um novo pacote de nome service, e dentro deste pacote, a classe
+@CadastroCozinhaService com o método salvar.
 
-Vale resaltar que para remover um recurso do nosso banco de dados, primeiro devemos busca-lo, para que assim ele
-passe a ser gerenciado pelo hibernate e após isso podemos tentar remove-lo. Pode ser que não seja possível remover
-devido a haver alguma chave estrangeira ligada ao recurso.
+A anotação @Service indica que é uma classe de serviço e atua como uma anotação @Component, já que a herda.
 
-Vale também lembrar de tratar o caso de não haver o recurso no nosso banco.
+Uma vantagem que esse padrão nos traz é separar a lógica de negócio do nosso Controller.
