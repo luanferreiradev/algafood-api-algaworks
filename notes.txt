@@ -1,10 +1,12 @@
-Não é recomendado que a camada de controller realize diretamente operações que alterem o estado da aplicação, para isso
-o DDD (Domain Driven Design) indica o conceito de Domain Service, que é uma operação sem estado que realiza uma tarefa
-específica do domínio.
+Nesta aula fizemos a refatoração para a exclusão de cozinhas utilizar domain services
 
-Para isso criamos dentro do pacote domain um novo pacote de nome service, e dentro deste pacote, a classe
-@CadastroCozinhaService com o método salvar.
+Primeiramente, fazemos com que a classe de repositório seja resposável por lançar exceção no caso de um recurso
+inexistente numa tentativa de remoção.
 
-A anotação @Service indica que é uma classe de serviço e atua como uma anotação @Component, já que a herda.
+Após isso, criamos um método de serviço para a exclusão do recurso, esse método irá capturar as exceções
+DataIntegrityViolationException e EmptyResultDataAccessException, para recursos que não podem ser removidos e para
+recursos que não foram encontrados respectivamente, e relançar como exceções customizadas mais específicas.
 
-Uma vantagem que esse padrão nos traz é separar a lógica de negócio do nosso Controller.
+Além, disso, nosso controller será refatorado para que capture as exceções e retorne respostas adequadas.
+
+OBS: removi o pacote jpa, de aulas anteriores, já que não tem mais o que contribuir para o aprendizado.
