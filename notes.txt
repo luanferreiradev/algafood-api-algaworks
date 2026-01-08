@@ -1,12 +1,5 @@
-Nesta aula fizemos a refatoração para a exclusão de cozinhas utilizar domain services
+O desafio se trata de criar os métodos para a consulta de recursos de restaurante.
+Teremos o collection resource e o singleton resource, GET /restaurantes e GET /restaurantes/{id}
 
-Primeiramente, fazemos com que a classe de repositório seja resposável por lançar exceção no caso de um recurso
-inexistente numa tentativa de remoção.
-
-Após isso, criamos um método de serviço para a exclusão do recurso, esse método irá capturar as exceções
-DataIntegrityViolationException e EmptyResultDataAccessException, para recursos que não podem ser removidos e para
-recursos que não foram encontrados respectivamente, e relançar como exceções customizadas mais específicas.
-
-Além, disso, nosso controller será refatorado para que capture as exceções e retorne respostas adequadas.
-
-OBS: removi o pacote jpa, de aulas anteriores, já que não tem mais o que contribuir para o aprendizado.
+Obs: Removemos a dependência do Jackson Xml, pois não terá uso na nossa API. Também removemos as classes e os
+métodos que utilizavam a dependência.
