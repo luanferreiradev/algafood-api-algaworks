@@ -1,5 +1,5 @@
-O desafio se trata de criar os métodos para a consulta de recursos de restaurante.
-Teremos o collection resource e o singleton resource, GET /restaurantes e GET /restaurantes/{id}
+Nesta aula criamos a classe CastroRestauranteService, onde haverá a lógica de negócio para a alteração de estádo dos
+recursos de Restaurante. Além disso, também criamos o método para adicionar uma cozinha no nosso RestauranteController
 
-Obs: Removemos a dependência do Jackson Xml, pois não terá uso na nossa API. Também removemos as classes e os
-métodos que utilizavam a dependência.
+Neste caso temos a que observar o ponto de que um Restaurante depende de uma Cozinha, por isso, devemos
+realizar uma busca para saber se o Id da cozinha informada existe
