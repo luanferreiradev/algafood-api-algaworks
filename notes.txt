@@ -1,5 +1,6 @@
-Nesta aula criamos a classe CastroRestauranteService, onde haverá a lógica de negócio para a alteração de estádo dos
-recursos de Restaurante. Além disso, também criamos o método para adicionar uma cozinha no nosso RestauranteController
+Neste desafio devemos criar um método no nosso RestauranteController para atualizar recursos de Restaurantes.
+Isso será feito por meio do método PUT.
 
-Neste caso temos a que observar o ponto de que um Restaurante depende de uma Cozinha, por isso, devemos
-realizar uma busca para saber se o Id da cozinha informada existe
+Devemos retornar 404 caso o recurso não exista, 400 caso o corpo da requisição possua algum problema
+(devemos também retornar uma mensagem descrevendo o problema da requisição) e 200 caso o recurso seja atualizado
+com sucesso.
