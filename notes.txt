@@ -1,5 +1,1 @@
-O desafio desta aula é estender a classe Problema para conter a propriedade timestamp.
-Além disso faremos com que os handles retornem uma userMessage e um timestamp.
-
-OBS: handleUncategorized renomeado para handleUncaught, que é o nome adequado, eu havia nomeado incorretamente na aula
-anterior.
+Este commit marca o início do módulo de Validações com Bean Validation
