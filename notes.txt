@@ -1,1 +1,16 @@
-Este commit marca o início do módulo de Validações com Bean Validation
+Quando recebemos uma entrada de dados do usuário, é importante que validar estes dados para garantir de que são do
+tipo que esperamos.
+
+Para validar os dados podemos usar o bean validator, que é uma especificação do java (no caso vamos usar o hibernate
+validator, que é uma das implementações de bean validator) que tem por objetivo facilitar a validação de propriedades
+em objetos java.
+
+Nós adicionamos anotações nas nossas propriedades que serão reponsáveis por validar os valores recebidos, podendo também
+criar anotações customizadas.
+
+Nosso projeto não possui o hibernate-validator, então vamos adiciona-lo:
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-validation</artifactId>
+</dependency>
