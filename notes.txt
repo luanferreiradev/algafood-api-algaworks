@@ -1,10 +1,9 @@
-@NotNull -> Não aceita valores nulos
-@NotEmpty -> Não aceita uma string vazia ""
-@NotBlank -> Não aceita uma string em branco "    "
+Nesta aula vamos tratar a propriedade Cozinha que é enviada na criação de um Restaurante.
 
-@DecimalMin("0") -> Valor mínimo a ser aceito (deve ser uma string)
-@PositiveOrZero -> Só aceita zero ou positívo
+Adicionamos a anotação @NotNull em Cozinha, isso impede que a Cozinha seja nula, porém não resolve o problema da Cozinha
+ter um id nulo sendo passado. Para isso adicionamos a anotação @NotNull na propriedade id de Cozinha, porém isso não é
+o suficiente.
 
-Constraints do Bean Validation
-
-https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-builtin-constraints
+O que acontece é que a validação não é feita em cascata. Quando passamos o parâmetro de Cozinha para o Restaurante não
+há uma uma verificação de se a Cozinha passada é válida. Para isso adicionamos a anotação @Valid na propriedade Cozinha
+de Restaurante, dessa forma a Cozinha será validada.
