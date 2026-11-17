@@ -1,9 +1,22 @@
-Nesta aula vamos tratar a propriedade Cozinha que é enviada na criação de um Restaurante.
+Nesta aula vamos agrupar e restringir contraints que devem ser usadas na validação.
 
-Adicionamos a anotação @NotNull em Cozinha, isso impede que a Cozinha seja nula, porém não resolve o problema da Cozinha
-ter um id nulo sendo passado. Para isso adicionamos a anotação @NotNull na propriedade id de Cozinha, porém isso não é
-o suficiente.
+Quando colocamos que o id da Cozinha não pode ser nulo, temos como consequência que não conseguimos cadastrar uma nova
+Cozinha, pois a criação de uma Cozinha não recebe um id, este é criado pelo banco e é apenas retornado.
 
-O que acontece é que a validação não é feita em cascata. Quando passamos o parâmetro de Cozinha para o Restaurante não
-há uma uma verificação de se a Cozinha passada é válida. Para isso adicionamos a anotação @Valid na propriedade Cozinha
-de Restaurante, dessa forma a Cozinha será validada.
+O que devemos fazer para resolver isso é agrupar as constraints. Para isso criamos interfaces que vão ser utilizadas
+para restringir as constraints. Vide a interface Groups.
+
+Essa interface será usada na propriedade groups das nossas anotações de constraints. Ex:
+
+    @NotNull(groups = Groups.CadastroRestaurante.class)
+
+Com isso definido, essa constraint será apenas utilizada em validações que sejam deste grupo.
+
+Para definir de qual gropu uma validação é vamos passar a usar a anotação @Validated ao invés de @Valid (apenas nos
+parâmetros de métodos, nas propriedades das classes continua-se usando @Valid.
+
+No caso, teriamos: @Validated(Groups.CadastroRestaurante.class)
+
+O grupo padrão, que não é necessário ser definido, é Default.class do javax.validation.groups.
+
+Agora temos as validações de CadastroRestaurante e CadastroCozinha separadas.
