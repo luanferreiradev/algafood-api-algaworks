@@ -1,13 +1,69 @@
-Nesta aula melhoramos um pouco o código.
+Nesta desafio devemos fazer a validação para adição e atualização dos recursos de Restaurante, Cozinha, Cidade e Estado
 
-Para não termos que definir em todas as constraints o grupo ao qual pertencem, podemos manter no grupo Default e
-converter a validação para outro grupo em um ponto específico com a anotação @ConvertGroup.
+Resolução do desafio
+1 - Alterando os modelos
+Incluir a inner interface EstadoId na interface Groups:
 
-Sai a validação @Validated do parâmetro recebido no método "adicionar" de RestauranteController volta o @Valid.
-Em Restaurante, na propriedade Cozinha fazemos a conversão de groupo com:
+public interface Groups {
 
-    @ConvertGroup(from = Default.class, to = Groups.CozinhaId.class)
+	public interface CozinhaId {}
 
-E apenas em cozinha mantemos a constraint com um grupo definido.
+	public interface EstadoId {}
 
-Também renomeamos CadastroCozinha para CozinhaId para ficar mais compatível com o novo código.
+}
+Adicionaremos anotações de validação nas classes de modelo
+
+Estado
+
+@NotNull(groups = Groups.EstadoId.class)
+@EqualsAndHashCode.Include
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
+
+@NotBlank
+@Column(nullable = false)
+private String nome;
+Cidade
+@NotBlank
+@Column(nullable = false)
+private String nome;
+
+@Valid
+@ConvertGroup(from = Default.class, to = Groups.EstadoId.class)
+@NotNull
+@ManyToOne
+@JoinColumn(nullable = false)
+private Estado estado;
+2 - Alterando os Controllers
+Adicionaremos aos Controllers anotação @Valid para validarmos os inputs.
+
+EstadoController
+//...
+public Estado adicionar(@RequestBody @Valid Estado estado) {
+//...
+
+public Estado atualizar(@PathVariable Long estadoId,
+@RequestBody @Valid Estado estado) {
+//...
+CidadeController
+//...
+public Cidade atualizar(@PathVariable Long cidadeId,
+	@RequestBody @Valid Cidade cidade) {
+
+//...
+
+public Cidade adicionar(@RequestBody @Valid Cidade cidade) {
+//...
+CozinhaController
+//...
+public Cozinha atualizar(@PathVariable Long cozinhaId,
+@RequestBody @Valid Cozinha cozinha) {
+
+//...
+RestauranteController
+//...
+public Restaurante atualizar(@PathVariable Long restauranteId,
+@RequestBody @Valid Restaurante restaurante) {
+
+//...
