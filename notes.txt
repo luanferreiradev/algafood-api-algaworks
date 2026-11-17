@@ -1,22 +1,13 @@
-Nesta aula vamos agrupar e restringir contraints que devem ser usadas na validação.
+Nesta aula melhoramos um pouco o código.
 
-Quando colocamos que o id da Cozinha não pode ser nulo, temos como consequência que não conseguimos cadastrar uma nova
-Cozinha, pois a criação de uma Cozinha não recebe um id, este é criado pelo banco e é apenas retornado.
+Para não termos que definir em todas as constraints o grupo ao qual pertencem, podemos manter no grupo Default e
+converter a validação para outro grupo em um ponto específico com a anotação @ConvertGroup.
 
-O que devemos fazer para resolver isso é agrupar as constraints. Para isso criamos interfaces que vão ser utilizadas
-para restringir as constraints. Vide a interface Groups.
+Sai a validação @Validated do parâmetro recebido no método "adicionar" de RestauranteController volta o @Valid.
+Em Restaurante, na propriedade Cozinha fazemos a conversão de groupo com:
 
-Essa interface será usada na propriedade groups das nossas anotações de constraints. Ex:
+    @ConvertGroup(from = Default.class, to = Groups.CozinhaId.class)
 
-    @NotNull(groups = Groups.CadastroRestaurante.class)
+E apenas em cozinha mantemos a constraint com um grupo definido.
 
-Com isso definido, essa constraint será apenas utilizada em validações que sejam deste grupo.
-
-Para definir de qual gropu uma validação é vamos passar a usar a anotação @Validated ao invés de @Valid (apenas nos
-parâmetros de métodos, nas propriedades das classes continua-se usando @Valid.
-
-No caso, teriamos: @Validated(Groups.CadastroRestaurante.class)
-
-O grupo padrão, que não é necessário ser definido, é Default.class do javax.validation.groups.
-
-Agora temos as validações de CadastroRestaurante e CadastroCozinha separadas.
+Também renomeamos CadastroCozinha para CozinhaId para ficar mais compatível com o novo código.
