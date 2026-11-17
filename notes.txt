@@ -1,16 +1,7 @@
-Quando recebemos uma entrada de dados do usuário, é importante que validar estes dados para garantir de que são do
-tipo que esperamos.
+Nesta aula adicinamos a anotação @NotNull na propriedade nome de Restaurante e a anotação @Valid no parâmetro do método
+adicionar do no nosso controller de Restaurante.
 
-Para validar os dados podemos usar o bean validator, que é uma especificação do java (no caso vamos usar o hibernate
-validator, que é uma das implementações de bean validator) que tem por objetivo facilitar a validação de propriedades
-em objetos java.
+A @NotNull anotação garante que não pode ser passado um valor nulo no campo nome.
+da requisição. A anotação @Valid faz com que a validação seja feita logo que o parâmetro do método é recebido.
 
-Nós adicionamos anotações nas nossas propriedades que serão reponsáveis por validar os valores recebidos, podendo também
-criar anotações customizadas.
-
-Nosso projeto não possui o hibernate-validator, então vamos adiciona-lo:
-
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-validation</artifactId>
-</dependency>
+Em alguma aula futura vamos melhorar a resposta de uma requisição com o campo nome nulo.
