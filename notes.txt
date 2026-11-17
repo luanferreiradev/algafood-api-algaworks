@@ -1,17 +1,36 @@
-Nesta aula vamos customizar as mensagens da validação de forma global.
+Neste desafio devemos criar mensagens customizadas para as situações de constraints
 
-Primeiramente, paramos de receber a mensagem diretamente do FieldError. Agora a mensagem passa a ser obtida pelo
-MessageSource.
+Resolução do desafio
+1 - Alterando as mensagens no arquivo messages.properties
+Vamos mudar nossas mensagens, o resultado final do arquivo ficará assim:
 
-    @Autowired
-    private MessageSource messageSource;
+	
+NotBlank={0} é obrigatório
+NotNull={0} é obrigatório
+PositiveOrZero={0} deve ser um valor maior ou igual a zero
 
-E para cada FieldError:
+# Cozinha
+cozinha.nome=Nome da cozinha
+cozinha.id=Código da cozinha
 
-    String message = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
+# Restaurante
+NotNull.restaurante.taxaFrete={0} é obrigatória
+NotNull.restaurante.cozinha={0} é obrigatória
+restaurante.nome=Nome do restaurante
+restaurante.cozinha=Cozinha do restaurante
+restaurante.taxaFrete=Taxa de frete do restaurante
 
-Vide ApiExceptionHandler.
+# Estado
+estado.nome=Nome do estado
+estado.id=Código do estado
 
-Adicionamos o arquivo messages.properties na pasta resources (certifique-se de estar em UTF-8).
+# Cidade
+cidade.nome=Nome da cidade
+cidade.estado=Estado da cidade
+2 - Adicionando mais uma validação em Restaurante
+Adicionaremos @NotNull na propriedade taxaFrete, pois o @PositiveOrZero não valida se é nulo
 
-Podemos também adicionar outros arquivos para localização em outros idiomas, mas não faremos isso agora.
+@NotNull 
+@PositiveOrZero
+@Column(name = "taxa_frete", nullable = false)
+private BigDecimal taxaFrete;
