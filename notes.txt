@@ -1,25 +1,8 @@
-Resolução do desafio
-1 - Adicionando uma entrada no enum ProblemType
+Nesta aula vamos fazer uma estensão do Problem Details para que possa conter as informações do onde houve problemas de binding.
 
-Adicionaremos a propriedade DADOS_INVALIDOS no nosso enum ProblemType.
+Podemos obter o resultado do binding diretamente da exceção por meio do método getBindingResult().
 
-	
-DADOS_INVALIDOS("/dados-invalidos", "Dados inválidos"),
+Vide as classes Problem e ApiExceptionHandler (método handleMethodArgumentNotValid).
 
-2 - Novo método em ApiExceptionHandler
-
-Adicionaremos agora um método para tratar MethodArgumentNotValidException.
-
-@Override
-protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-        HttpHeaders headers, HttpStatus status, WebRequest request) {
-
-    ProblemType problemType = ProblemType.DADOS_INVALIDOS;
-    String detail = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.";
-        
-    Problem problem = createProblemBuilder(status, problemType, detail)
-        .userMessage(detail)
-        .build();
-    
-    return handleExceptionInternal(ex, problem, headers, status, request);
-}          
+Com isso a nossa resposta da requisição passa a conter as informações de onde houve erro de binding. Posteriormente
+vamos melhorar a resposta.
