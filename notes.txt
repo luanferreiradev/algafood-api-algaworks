@@ -1,7 +1,25 @@
-Nesta aula adicinamos a anotação @NotNull na propriedade nome de Restaurante e a anotação @Valid no parâmetro do método
-adicionar do no nosso controller de Restaurante.
+Resolução do desafio
+1 - Adicionando uma entrada no enum ProblemType
 
-A @NotNull anotação garante que não pode ser passado um valor nulo no campo nome.
-da requisição. A anotação @Valid faz com que a validação seja feita logo que o parâmetro do método é recebido.
+Adicionaremos a propriedade DADOS_INVALIDOS no nosso enum ProblemType.
 
-Em alguma aula futura vamos melhorar a resposta de uma requisição com o campo nome nulo.
+	
+DADOS_INVALIDOS("/dados-invalidos", "Dados inválidos"),
+
+2 - Novo método em ApiExceptionHandler
+
+Adicionaremos agora um método para tratar MethodArgumentNotValidException.
+
+@Override
+protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+        HttpHeaders headers, HttpStatus status, WebRequest request) {
+
+    ProblemType problemType = ProblemType.DADOS_INVALIDOS;
+    String detail = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.";
+        
+    Problem problem = createProblemBuilder(status, problemType, detail)
+        .userMessage(detail)
+        .build();
+    
+    return handleExceptionInternal(ex, problem, headers, status, request);
+}          
