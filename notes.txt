@@ -1,8 +1,10 @@
-Nesta aula vamos fazer uma estensão do Problem Details para que possa conter as informações do onde houve problemas de binding.
+@NotNull -> Não aceita valores nulos
+@NotEmpty -> Não aceita uma string vazia ""
+@NotBlank -> Não aceita uma string em branco "    "
 
-Podemos obter o resultado do binding diretamente da exceção por meio do método getBindingResult().
+@DecimalMin("0") -> Valor mínimo a ser aceito (deve ser uma string)
+@PositiveOrZero -> Só aceita zero ou positívo
 
-Vide as classes Problem e ApiExceptionHandler (método handleMethodArgumentNotValid).
+Constraints do Bean Validation
 
-Com isso a nossa resposta da requisição passa a conter as informações de onde houve erro de binding. Posteriormente
-vamos melhorar a resposta.
+https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-builtin-constraints
