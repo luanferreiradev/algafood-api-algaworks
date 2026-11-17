@@ -1,5 +1,17 @@
-Nós podemos customizar a mensagem de validação passando a propriedade message das anoteções de constraint.
+Nesta aula vamos customizar as mensagens da validação de forma global.
 
-@NotBlank(message = "Nome é obrigatório")
+Primeiramente, paramos de receber a mensagem diretamente do FieldError. Agora a mensagem passa a ser obtida pelo
+MessageSource.
 
-Porém isso seria muito repetitivo de ser feito ao longo do código.
+    @Autowired
+    private MessageSource messageSource;
+
+E para cada FieldError:
+
+    String message = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
+
+Vide ApiExceptionHandler.
+
+Adicionamos o arquivo messages.properties na pasta resources (certifique-se de estar em UTF-8).
+
+Podemos também adicionar outros arquivos para localização em outros idiomas, mas não faremos isso agora.
