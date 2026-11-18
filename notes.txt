@@ -1,21 +1,32 @@
-Nesta aula fazer com que o resource bundle do bean validation seja unido com o do spring. Não é recomendado fazer, é
-melhor separado mesmo. Inclusive, isso não muda a precedência, como vimos na aula anterior, sobreescritas do
-ValidationMessages.properties continuam do mesmo jeito, apenas e um arquivo diferente.
+Nesta aula vamos criar constraints de validação customizadas usando composição.
 
-Primeiro criamos um novo pacote dentor da pasta principal: core e dentro dele criamos o pacote validation
-Dentro criamos a classe ValidationConfig com o seguinte método:
+Vide a anotação TaxaFrete
 
-@Configuration
-public class ValidationConfig {
+@Target(...) -> define o que pode ser anotado
+@Retention(...) -> define em que momento a anotação se aplica. Compilação, runtime...
+@Constraint(...) -> define uma ou mais classes que vão validar programaticamente
+@PositiveOrZero -> define que essa anotação vai validar a anotação @TaxaFrete
 
-    @Bean
-    public LocalValidatorFactoryBean validator(MessageSource messageSource) {
-        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-        bean.setValidationMessageSource(messageSource);
-        return bean;
-    }
+public @interface TaxaFrete {
+
+    @OverridesAttribute(constraint = PositiveOrZero.class, name = "message") -> define que a mensagem será sobreescrita
+    String message() default "{TaxaFrete.invalida}";
+
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 }
 
-Desta forma configuramos para que o ValidationMessageSource passe a usar o nosso message source do Spring.
 
-Passamos também a classe Groups para o pacote core.validation.
+Um problema que acontece é que quando temos no arquivo messages.properties as seguintes propriedades:
+
+    PositiveOrZero={0} deve ser maior ou igual a zero
+    TaxaFrete.invalida={0} está inválida
+
+Mesmo que usemos a anotação:
+
+    @OverridesAttribute(constraint = PositiveOrZero.class, name = "message")
+
+A mensagem lançada será: Taxa de Frete deve ser maior ou igual a zero
+Isto acontece porque a violação da constraint é lançada como PositiveOrZero ao invés de TaxaFrete. Este acaba sendo um
+problema ao criar anotações customizadas usando composição.
