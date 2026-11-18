@@ -1,36 +1,25 @@
-Neste desafio devemos criar mensagens customizadas para as situações de constraints
+O pacote org.hibernate.validator possui em seu resource bundle vários arquivos de mensagem para diferentes linguas, daí
+vem as mensagens de validação.
 
-Resolução do desafio
-1 - Alterando as mensagens no arquivo messages.properties
-Vamos mudar nossas mensagens, o resultado final do arquivo ficará assim:
+Se quisermos sobreescrever alguma dessas mensagens, podemos criar um arquivo com o mesmo nome
+("ValidationMessages.properties") na pasta de resources do projeto e sobreescrevemos as mensagens que quisermos.
 
-	
-NotBlank={0} é obrigatório
-NotNull={0} é obrigatório
-PositiveOrZero={0} deve ser um valor maior ou igual a zero
+As mensagens podem vir do resource bundle do bean validation ou do resource bundle do spring.
+As mensagens que vem do spring tem precedência sobre as do bean validation.
 
-# Cozinha
-cozinha.nome=Nome da cozinha
-cozinha.id=Código da cozinha
+Arquivos do tipo messages.properties tem precedência sobre ValidationMessagens.properties e só podemos sobreescrever
+diretamente uma mensagem de ValidationMessagens.properties do resource bundle de bean validation no arquivo de
+ValidationMessagens.properties, não funciona no messages.properties
 
-# Restaurante
-NotNull.restaurante.taxaFrete={0} é obrigatória
-NotNull.restaurante.cozinha={0} é obrigatória
-restaurante.nome=Nome do restaurante
-restaurante.cozinha=Cozinha do restaurante
-restaurante.taxaFrete=Taxa de frete do restaurante
+Ex:
+    message.properties
+        PositiveOrZero={0} deve ser maior ou igual a zero
 
-# Estado
-estado.nome=Nome do estado
-estado.id=Código do estado
+    ValidationMessages.properties
+        TaxaFrete.invalida=Taxa frete está inválida, informe um valor positivo
 
-# Cidade
-cidade.nome=Nome da cidade
-cidade.estado=Estado da cidade
-2 - Adicionando mais uma validação em Restaurante
-Adicionaremos @NotNull na propriedade taxaFrete, pois o @PositiveOrZero não valida se é nulo
+    E uma propriedade com a anotação com a seguinte chave:
+        @PositiveOrZero(message = "{TaxaFrete.invalida}")
 
-@NotNull 
-@PositiveOrZero
-@Column(name = "taxa_frete", nullable = false)
-private BigDecimal taxaFrete;
+    Apesar de aparentemente a prioridade ser de pegar a mensagem de ValidationMessages.properties pela precedência da
+    anotação, a mensagem virá de message.properties, pois message.properties tem precedência.
