@@ -1,14 +1,24 @@
-Nesta aula vamos corrigir a falta de uma mensagem adequada para a validação de um classe.
+Nesta aula vamos executar o processo de validação programaticamente. Quando fazemos o patch de um restaurante,
+inicialmente não temos uma instância de Restaurante, então não podemos fazer a validação logo de incício.
 
-O que devemos fazer é em ApiExceptionHandler em handleMethodArgumentNotValid, ao invés obtermos apenas os FieldErros,
-vamos obter todos os erros com getAllErrors.
+Primeiramente fazemos com que o controler tenha uma instância de SmartValidator
 
-A partir daí vamos filtrar o que são erros instância de FieldError e quais não são.
+    @Autowired
+    private SmartValidator validator;
 
-Vide o método handleMethodArgumentNotValid de ApiExceptionHandler.
+Depois criamos um método para validação e o chamamos logo após o merge da propriedade recebida com a instância de
+Restaurante.
 
-Adicionamos a mensagem:
-    ValorZeroIncluiDescricao={1} deve conter {2}
+O método de validação fica assim:
 
-OBS: neste caso temos vários parâmetros de anotação, 0 é vazio pois não se trata de um Field e temos de 1 a 3 sendo
-parâmetros da anotação.
+    private void validate(Restaurante restaurante, String objectName) {
+        BeanPropertyBindingResult bindingResult = new BeanPropertyBindingResult(restaurante, objectName);
+        validator.validate(restaurante, bindingResult);
+        if (bindingResult.hasErrors()) {
+            throw new ValidacaoException(bindingResult);
+        }
+    }
+
+Após a validação, se o bindingResult tiver erros vamos lançar uma exceção que nós criamos, a ValidacaoException.
+No momento essa exceção não está sendo tratada, então ainda não temos uma mensagem adequada caso ocorra um erro.
+Vamos adicionar esse tratamento na próxima aula.
