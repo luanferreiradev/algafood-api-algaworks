@@ -1,19 +1,23 @@
-Nesta aula criamos constraints de validação customizadas com a implementação de ContraintValidator
+Nesta aula vamos criar constraints de validação customizadas em nível de classe. Isso significa que podemos fazer
+validações em mais de uma propriedade de uma só vez, pois podemos ter situações em que uma validação de uma propriedade
+só é feita se uma propriedade for validada antes.
 
-Primeiro criamos a anotação @Multiplo, nela devemos adicionar a propriedade "numero", que será passada onde a anotação
-for usada ( @Multiplo(numero = 5) ). Na anotação @Constraint devemos adicionar nosso validator, ficando assim:
-@Constraint(validatedBy = {MultiploValidator.class})
+No exemplo da aula queremos validar em Restaurante a propriedade nome contém "Frete Grátis" caso o valor do frete seja 0.
+Para isso vamos validar a classe, não a propriedade.
 
-Depois criamos a classe MultiploValidator, que deve implementar ConstraintValidator.
+Criamos a anotação @ValorZeroIncluiDescricao e aplicamos a anotação na classe Restaurante.
 
-MultiploValidator deve sobreescrever dois métodos, um é o isValid, que irá validar e sempre deve estar presente e o
-initialize, que deve estar presente quando passamos alguma propriedade para a anotação, como passamos
-aqui @Multiplo(numero = 5).
+A anotação @ValorZeroIncluiDescricao só será aplicada em classes, então anotamos com @Target({ElementType.TYPE}).
+Adicionamos também as propriedades:
 
-Vide a classe MultiploValidator para ver a implementação.
+    String valorField();
+    String descricaoField();
+    String descricaoObrigatoria();
 
-Adicionamos também ao message.properties:
+Criamos nosso validator ValorZeroIncluiDescricaoValidator e adicionamos na @Constraint de @ValorZeroIncluiDescricao.
 
-    Multiplo={0} deve ser um multiplo de {1}
+Vide a classe ValorZeroIncluiDescricaoValidator, onde obtemos os nomes dos dos campos via initializer, e obtemos os
+valores dos campos via BeanUtils.
 
-    Onde 0 é a propriedade da classe e 1 a propriedade da anotação.
+Porém acontece um problema, que é que não temos nossa mensagem de validação nem aparece campos com problema, isso
+acontece porque estamos validando a classe e não suas propriedades. Vamos corrigir isso em outra aula
