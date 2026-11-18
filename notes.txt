@@ -1,23 +1,14 @@
-Nesta aula vamos criar constraints de validação customizadas em nível de classe. Isso significa que podemos fazer
-validações em mais de uma propriedade de uma só vez, pois podemos ter situações em que uma validação de uma propriedade
-só é feita se uma propriedade for validada antes.
+Nesta aula vamos corrigir a falta de uma mensagem adequada para a validação de um classe.
 
-No exemplo da aula queremos validar em Restaurante a propriedade nome contém "Frete Grátis" caso o valor do frete seja 0.
-Para isso vamos validar a classe, não a propriedade.
+O que devemos fazer é em ApiExceptionHandler em handleMethodArgumentNotValid, ao invés obtermos apenas os FieldErros,
+vamos obter todos os erros com getAllErrors.
 
-Criamos a anotação @ValorZeroIncluiDescricao e aplicamos a anotação na classe Restaurante.
+A partir daí vamos filtrar o que são erros instância de FieldError e quais não são.
 
-A anotação @ValorZeroIncluiDescricao só será aplicada em classes, então anotamos com @Target({ElementType.TYPE}).
-Adicionamos também as propriedades:
+Vide o método handleMethodArgumentNotValid de ApiExceptionHandler.
 
-    String valorField();
-    String descricaoField();
-    String descricaoObrigatoria();
+Adicionamos a mensagem:
+    ValorZeroIncluiDescricao={1} deve conter {2}
 
-Criamos nosso validator ValorZeroIncluiDescricaoValidator e adicionamos na @Constraint de @ValorZeroIncluiDescricao.
-
-Vide a classe ValorZeroIncluiDescricaoValidator, onde obtemos os nomes dos dos campos via initializer, e obtemos os
-valores dos campos via BeanUtils.
-
-Porém acontece um problema, que é que não temos nossa mensagem de validação nem aparece campos com problema, isso
-acontece porque estamos validando a classe e não suas propriedades. Vamos corrigir isso em outra aula
+OBS: neste caso temos vários parâmetros de anotação, 0 é vazio pois não se trata de um Field e temos de 1 a 3 sendo
+parâmetros da anotação.
