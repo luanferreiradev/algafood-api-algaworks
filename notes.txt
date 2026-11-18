@@ -1,25 +1,21 @@
-O pacote org.hibernate.validator possui em seu resource bundle vários arquivos de mensagem para diferentes linguas, daí
-vem as mensagens de validação.
+Nesta aula fazer com que o resource bundle do bean validation seja unido com o do spring. Não é recomendado fazer, é
+melhor separado mesmo. Inclusive, isso não muda a precedência, como vimos na aula anterior, sobreescritas do
+ValidationMessages.properties continuam do mesmo jeito, apenas e um arquivo diferente.
 
-Se quisermos sobreescrever alguma dessas mensagens, podemos criar um arquivo com o mesmo nome
-("ValidationMessages.properties") na pasta de resources do projeto e sobreescrevemos as mensagens que quisermos.
+Primeiro criamos um novo pacote dentor da pasta principal: core e dentro dele criamos o pacote validation
+Dentro criamos a classe ValidationConfig com o seguinte método:
 
-As mensagens podem vir do resource bundle do bean validation ou do resource bundle do spring.
-As mensagens que vem do spring tem precedência sobre as do bean validation.
+@Configuration
+public class ValidationConfig {
 
-Arquivos do tipo messages.properties tem precedência sobre ValidationMessagens.properties e só podemos sobreescrever
-diretamente uma mensagem de ValidationMessagens.properties do resource bundle de bean validation no arquivo de
-ValidationMessagens.properties, não funciona no messages.properties
+    @Bean
+    public LocalValidatorFactoryBean validator(MessageSource messageSource) {
+        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+        bean.setValidationMessageSource(messageSource);
+        return bean;
+    }
+}
 
-Ex:
-    message.properties
-        PositiveOrZero={0} deve ser maior ou igual a zero
+Desta forma configuramos para que o ValidationMessageSource passe a usar o nosso message source do Spring.
 
-    ValidationMessages.properties
-        TaxaFrete.invalida=Taxa frete está inválida, informe um valor positivo
-
-    E uma propriedade com a anotação com a seguinte chave:
-        @PositiveOrZero(message = "{TaxaFrete.invalida}")
-
-    Apesar de aparentemente a prioridade ser de pegar a mensagem de ValidationMessages.properties pela precedência da
-    anotação, a mensagem virá de message.properties, pois message.properties tem precedência.
+Passamos também a classe Groups para o pacote core.validation.
