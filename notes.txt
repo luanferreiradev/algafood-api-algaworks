@@ -1,24 +1,51 @@
-Nesta aula vamos executar o processo de validação programaticamente. Quando fazemos o patch de um restaurante,
-inicialmente não temos uma instância de Restaurante, então não podemos fazer a validação logo de incício.
+Neste desafio vamos tratar a exception customizada de validações programáticas
 
-Primeiramente fazemos com que o controler tenha uma instância de SmartValidator
+Resolução do desafio
+1 - Adicionando o método genérico handleValidationInternal na classe ApiExcpetionHandler
+Vamos criar um método genérico que poderá ser usado em outros pontos da nossa classe.
 
-    @Autowired
-    private SmartValidator validator;
+private ResponseEntity<Object> handleValidationInternal(Exception ex, BindingResult bindingResult, HttpHeaders headers,
+	HttpStatus status, WebRequest request) {
 
-Depois criamos um método para validação e o chamamos logo após o merge da propriedade recebida com a instância de
-Restaurante.
+    ProblemType problemType = ProblemType.DADOS_INVALIDOS;
+    String detail = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.";
 
-O método de validação fica assim:
+    List<Problem.Object> problemObjects = bindingResult.getAllErrors().stream()
+            .map(objectError -> {
+                String message = messageSource.getMessage(objectError, LocaleContextHolder.getLocale());
 
-    private void validate(Restaurante restaurante, String objectName) {
-        BeanPropertyBindingResult bindingResult = new BeanPropertyBindingResult(restaurante, objectName);
-        validator.validate(restaurante, bindingResult);
-        if (bindingResult.hasErrors()) {
-            throw new ValidacaoException(bindingResult);
-        }
-    }
+                String name = objectError.getObjectName();
 
-Após a validação, se o bindingResult tiver erros vamos lançar uma exceção que nós criamos, a ValidacaoException.
-No momento essa exceção não está sendo tratada, então ainda não temos uma mensagem adequada caso ocorra um erro.
-Vamos adicionar esse tratamento na próxima aula.
+                if (objectError instanceof FieldError) {
+                    name = ((FieldError) objectError).getField();
+                }
+
+                return Problem.Object.builder()
+                    .name(name)
+                    .userMessage(message)
+                    .build();
+            })
+            .collect(Collectors.toList());
+
+    Problem problem = createProblemBuilder(status, problemType, detail)
+        .userMessage(detail)
+        .objects(problemObjects)
+        .build();
+
+    return handleExceptionInternal(ex, problem, headers, status, request);
+}
+2 -Adicionando método handleValidacaoException na classe ApiExcpetionHandler
+Adicionamos o método que irá tratar ValidacaoException.
+
+
+@ExceptionHandler({ ValidacaoException.class })
+public ResponseEntity<Object> handleValidacaoException(ValidacaoException ex, WebRequest request) {
+    return handleValidationInternal(ex, ex.getBindingResult(), new HttpHeaders(),
+            HttpStatus.BAD_REQUEST, request);
+}
+3 - Alterando o método handleMethodArgumentNotValid
+@Override
+protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+        HttpHeaders headers, HttpStatus status, WebRequest request) {
+    return handleValidationInternal(ex, ex.getBindingResult(), headers, status, request);
+}
